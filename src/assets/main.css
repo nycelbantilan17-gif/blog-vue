@@ -1,24 +1,74 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', Arial, sans-serif;
   text-decoration: none;
-  font-family: 'Kanit', sans-serif;
+  transition: background 0.2s, color 0.2s;
 }
 
 body {
-  color: #212121;
-  background: #f3eeea;
+  color: #22223b;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
 button {
   cursor: pointer;
-  font-weight: inherit;
-  color: inherit;
-  font-size: inherit;
+  font-weight: 500;
+  color: #fff;
+  font-size: 1rem;
   border: none;
   outline: none;
-  background: none;
+  background: #4f8cff;
+  padding: 0.6em 1.4em;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(79, 140, 255, 0.08);
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: #2563eb;
+  transform: translateY(-2px) scale(1.04);
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #1e40af;
+  text-decoration: underline;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.5em 1em;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #fff;
+  color: #22223b;
+  margin-bottom: 1em;
+  outline: none;
+  transition: border 0.2s;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #4f8cff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #e0e7ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b6c6f5;
+  border-radius: 4px;
 }

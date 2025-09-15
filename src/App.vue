@@ -4,12 +4,59 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <div class="wrapper">
-    <nav>
+      <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/add-post">Add Post</RouterLink>
       </nav>
-    </div>
   </header>
 
   <RouterView />
 </template>
+
+<!-- 
+<style lang="scss" scoped>
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 2rem;
+  background-color: #90caf9;
+  border-bottom: 1px solid #90caf9;
+  .nav-link {
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    margin-right: 1rem;
+    &:hover {
+      background-color: #90caf9;
+    }
+  }
+}
+</style> -->
+<style lang="scss" scoped>
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #90caf9;
+}
+
+nav {
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #90caf9;
+}
+
+nav a {
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+
+nav a:hover {
+  background-color: #64b5f6;
+}
+</style>

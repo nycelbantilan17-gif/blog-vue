@@ -1,7 +1,7 @@
 <script setup>
-// Remove unused imports if not needed
-// import PostItem from '../components/PostItem.vue';
-// import Wrapper from '../components/Wrapper.vue';
+// Removed unused imports
+// import PostItem from '@/components/PostItem.vue';
+// import Wrapper from '@/components/Wrapper.vue';
 
 const post = [
   {
