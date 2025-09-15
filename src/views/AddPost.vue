@@ -33,6 +33,9 @@ const invalidForm = computed(() => {
 
 
 <style lang="scss" scoped>
+.wrapper {
+  max-width: 500px !important;
+}
   form {
     /* Remove background, border-radius, and box-shadow */
     padding: 2rem 2.5rem;

@@ -6,12 +6,11 @@
 
 <style lang ="scss" scoped>
 .wrapper {
-  max-width: 550px;
+  max-width: 900px; // Increased width for HomeView
   margin: 40px auto;
-  padding: 30px;
-  background: linear-gradient(135deg, #cecd91 0%, #ce5f96 100%);
-  border-radius: 25px;
-  box-shadow: 0 4px 20px rgba(26, 23, 23, 0.08);
-
+  padding: 32px;
+  background: linear-gradient(135deg, #2e59aa 60%, #434343 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
 }
 </style>
