@@ -28,3 +28,5 @@ npm run dev
 npm run build
 ```
 ![alt text](<Screenshot 2025-09-05 144625.png>)
+
+![alt text](activity-6.png)
