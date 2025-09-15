@@ -1,165 +1,113 @@
 <script setup>
-// Remove unused imports if not needed
-// import PostItem from '../components/PostItem.vue';
-// import Wrapper from '../components/Wrapper.vue';
+import PostItem from '@/components/PostItem.vue';
+import Wrapper from '@/components/Wrapper.vue';
 
-const post = [
+const posts = [
   {
     "userId": 1,
     "id": 1,
-    "name": "Juan Dela Cruz",
+    "name": "Nycel Bantilan",
     "date": "2025-09-03",
-    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    "title": "To be or not to be responsible: Choosing to avoid responsibility",
+    "body": "Because there are obligations,\npeople avoid consequences by escaping duties,\nsome blame others instead of doing their part,\nwe all face situations like this, yet someone must still do the work."
   },
   {
     "userId": 1,
     "id": 2,
-    "name": "Maria Santos",
-    "date": "2025-09-02",
-    "title": "qui est esse",
-    "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Who is this person?",
+    "body": "In the timeline of life,\nsome follow blindly, others suffer in silence,\nthere are those who fake kindness but only hurt people,\nwhy do some people just cause problems and never offer solutions?"
   },
   {
     "userId": 1,
     "id": 3,
-    "name": "Pedro Reyes",
-    "date": "2025-09-01",
-    "title": "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-    "body": "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut"
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Complaints and burdens: Always falling on me",
+    "body": "Even when I'm fair, I'm still blamed,\npeople expect perfection and always want more,\nwhy am I the one accused or pressured?\nI carry hate, work hard, and still it's not enough."
   },
   {
     "userId": 1,
     "id": 4,
-    "name": "Ana Lopez",
-    "date": "2025-08-30",
-    "title": "eum et est occaecati",
-    "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Why does everything fall on me?",
+    "body": "I’m often forced to accept tasks others reject,\nI try to be responsible, but get blamed when things go wrong,\npeople don’t understand the effort it takes,\nand yet, they expect me to fix everything."
+  },
+  {
+    "userId": 1,
+    "id": 5,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Frustration and anger",
+    "body": "I’m tired of apologizing and doing everything,\nothers take advantage while I stay quiet,\nwhy do I always have to fix their mistakes?\nThe pain and responsibility are too much."
+  },
+  {
+    "userId": 1,
+    "id": 6,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Suffering in silence",
+    "body": "My body is exhausted and my mind tired,\nwe try to stay strong even when hurting inside,\nwe get blamed and misunderstood,\nbut still we carry on with the pain and the work."
+  },
+  {
+    "userId": 1,
+    "id": 7,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Why is it always difficult?",
+    "body": "Life keeps throwing problems our way,\nsome people act like they care, but don’t really help,\nand when trouble comes, they disappear,\nwe’re left to deal with it alone again."
+  },
+  {
+    "userId": 1,
+    "id": 8,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Pain behind the smile",
+    "body": "We try to look strong on the outside,\nbut our hearts are tired from carrying pain,\nevery day we hide what we feel,\nand yet, life keeps challenging us more."
+  },
+  {
+    "userId": 1,
+    "id": 9,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Legal problems, temporary fixes, and frustrations",
+    "body": "People know what’s right, but still ignore it,\nwe're promised change but get the same results,\ntemporary solutions just delay real progress,\nand we suffer the consequences."
+  },
+  {
+    "userId": 1,
+    "id": 10,
+    "name": "Nycel Bantilan",
+    "date": "2025-09-03",
+    "title": "Annoyances and mistakes we endure",
+    "body": "We deal with poor service and wrong decisions,\nwe're forced to stay silent when things go bad,\nwe sit through the errors,\nand no one is held accountable."
+  },
+  {
+    "userId": 2,
+    "id": 11,
+    "name": "Arnil Gerodiaz",
+    "date": "2025-09-03",
+    "title": "Recognizing and praising the good",
+    "body": "Some people still care and do what’s right,\nwe see kindness and honesty in them,\nthey help even when no one’s watching,\nand that gives us hope for the community."
+  },
+  {
+    "userId": 2,
+    "id": 12,
+    "name": "Arnil Gerodiaz",
+    "date": "2025-09-03",
+    "title": "Old problems still not solved",
+    "body": "These issues have been around for a long time,\nand yet, no real solution has been done,\nit’s frustrating when no one listens,\neven when the problems are clear and serious."
   }
 ]
 </script>
 
 <template>
   <main>
-    <div v-for="item in post" :key="item.id">
-      <div class="wrapper">
-        <div class="header">
-          <span>Written by {{ item.name }} on {{ item.date }}</span>
-          <div>
-            <button class="del materials-icon">delete</button>
-            <button class="save materials-icon">bookmark_border</button>
-          </div>
-        </div>
-        <h2>{{ item.title }}</h2>
-        <p>{{ item.body }}</p>
-      </div>
+    <div v-for="post in posts" :key="post.id">
+      <Wrapper>
+        <PostItem :post="post"/>
+      </Wrapper>
     </div>
   </main>
-</template> 
-
-<style>
-/* 🔘 Buttons inside circle */
-.materials-icon {
-  font-family: "Material Icons";
-  font-size: 20px;
-  border: none;
-  background: #eae4e4;        /* white circle background */
-  color: #f3eded;             /* default icon color */
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 50%;      /* makes it circle */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* subtle shadow */
-  transition: background 0.2s, transform 0.2s;
-}
-
-/* Hover effect */
-.materials-icon:hover {
-  background: #0d0c0c;   /* slightly darker circle */
-  transform: scale(1.1);
-}
-
-/* ❌ Delete button (red icon) */
-.del {
-  color: #e57169;
-}
-
-/* 🔖 Bookmark button (blue icon) */
-.save {
-  color: #e1505c;
-}
-</style>
-
-<style>
-/* 🌈 Page background */
-body {
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #e3f2fd, #f4f6f8);
-  font-family: "Segoe UI", Arial, sans-serif;
-}
-
-/* 📦 Card container */
-.wrapper {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 24px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-/* 📌 Header bar */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: -24px -24px 16px -24px;
-  padding: 12px 24px;
-  background: #787c7e;
-  border-bottom: 1px solid #d0e3ff;
-  color: #444;
-  font-size: 14px;
-  border-radius: 16px 16px 0 0;
-}
-
-/* 🔘 Buttons */
-.materials-icon {
-  font-family: "Material Icons";
-  font-size: 24px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 6px;
-  border-radius: 50%;
-  transition: background 0.2s, transform 0.2s;
-}
-.materials-icon:hover {
-  background: rgba(0, 0, 0, 0.05);
-  transform: scale(1.1);
-}
-.del {
-  color: #e53935;
-}
-.save {
-  color: #22ae89;
-}
-
-/* 📝 Title and Body styles with background */
-.title-box {
-  background: #bbdefb; /* light blue */
-  color: #0d47a1;      /* dark blue text */
-  padding: 12px 16px;
-  border-radius: 8px;
-  font-size: 26px;
-  margin-bottom: 16px;
-}
-
-.body-box {
-  background: #f1f8e9; /* light green */
-  color: #33691e;      /* dark green text */
-  padding: 16px;
-  border-radius: 8px;
-  line-height: 1.8;
-  font-size: 16px;
-}
-</style>
+</template>

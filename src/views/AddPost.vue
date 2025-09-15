@@ -1,104 +1,97 @@
 <script setup>
+import { computed, reactive } from 'vue';
 import Wrapper from '@/components/Wrapper.vue';
+
+const post = reactive({
+    title: '',
+    body: ''
+});
+
+const invalidForm = computed(() => {
+  return post.title === '' || post.body === '';
+})
 </script>
 
 <template>
-  <Wrapper>
-    <form>
-      <h3>Add a New Post</h3>
-      <div>
-        <label>Post Title</label>
-        <input type="text" placeholder="What's your post title?" />
-      </div>
-      <div>
-        <label>Post Content</label>
-        <textarea rows="5" placeholder="Share your thoughts here..."></textarea>
-      </div>
-      <div>
-        <button type="submit"> PUBLISH</button>
-      </div>
-    </form>
-  </Wrapper>
+    <Wrapper>
+        <form>
+            <h3>Add a New Post</h3>
+            <div>
+                <label>📝 Post Title</label>
+                <input type="text" v-model="post.title" placeholder="Enter your post title here..." />
+            </div>
+            <div>
+                <label>✍️ Post Content</label>
+                <textarea rows="5" v-model="post.body"></textarea>
+            </div>
+            <div>
+                <button :disabled="invalidForm">🚀 Upload</button>
+            </div>
+        </form>
+    </Wrapper>
 </template>
 
+
 <style lang="scss" scoped>
-form {
-  background: #088dc2;
-  padding: 2rem 2.5rem;
-  width: 100%;
-  max-width: 550px;
-  margin: 2rem auto;
-  border-radius: 2rem;
-  box-shadow: 0 8px 25px rgba(36, 31, 31, 0.08);
-  font-family: 'Kanit', sans-serif;
+  form {
+    /* Remove background, border-radius, and box-shadow */
+    padding: 2rem 2.5rem;
+    width: 100%;
+    max-width: 500px;
 
-  h3 {
-    margin-bottom: 1.5rem;
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
-    letter-spacing: 0.5px;
-  }
-
-  div {
-    margin-bottom: 1.5rem;
-
-    label {
-      display: block;
-      margin-bottom: 0.6rem;
-      font-weight: 500;
-      color: #e0f7fa;
-      font-size: 0.95rem;
+    h3 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: #100e20;
     }
 
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.9rem 1rem;
-      border: 1px solid #07afe2;
-      border-radius: 1rem;
-      font-size: 1rem;
-      background-color: #ebf1ee;
-      font-family: 'Kanit', sans-serif;
-      transition: all 0.3s ease;
+    div {
+      margin-bottom: 1.2rem;
 
-      &:focus {
-        border-color: #121032;
-        background-color: #fff;
-        outline: none;
-        box-shadow: 0 0 0 4px rgba(8, 141, 194, 0.15);
+      label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #555;
       }
 
-      &::placeholder {
-        color: #aaa;
-        font-size: 0.9rem;
-      }
-    }
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 2cap;
+        font-size: 1rem;
+        background-color: #fafafa;
+        transition: border-color 0.3s;
 
-    button {
-      width: 100%;
-      padding: 0.9rem;
-      background: linear-gradient(135deg, #088dc2, #4b132f);
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 1rem;
-      cursor: pointer;
-      font-family: 'Kanit', sans-serif;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(8, 141, 194, 0.2);
+        &:focus {
+          border-color: #007bff;
+          outline: none;
+          background-color: #fff;
+        }
       }
 
-      &:active {
-        transform: translateY(0);
-        box-shadow: none;
+      button {
+        display: block;
+        margin: 0 auto;
+        padding: 0.75rem 2rem;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+      button:disabled {
+        background-color: #29d89e;
+        cursor: not-allowed;
       }
     }
   }
-}
 </style>

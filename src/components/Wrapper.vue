@@ -4,14 +4,14 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang ="scss" scoped>
 .wrapper {
   max-width: 550px;
-  margin: 2rem auto;
- padding: 2rem 2.5rem;
-  background: #088dc2;
-  border-radius: 1rem;
-  box-shadow: 0 8px 25px rgba(36, 31, 31, 0.08);
-  font-family: 'Kanit', sans-serif;
+  margin: 40px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #cecd91 0%, #ce5f96 100%);
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(26, 23, 23, 0.08);
+
 }
 </style>
