@@ -9,7 +9,7 @@
 }
 body {
     color: #212121;
-    background-color: #aee9e9;
+    background-color: #fdfdfd;
 }
 button {
     cursor: pointer;
@@ -19,4 +19,13 @@ button {
     border: none;
     outline: none;
     background: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease-in-out;
 }
+
+button:hover {
+    background-color: #0d7b8a; 
+    color: #fff; 
+}
+

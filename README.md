@@ -27,6 +27,9 @@ npm run dev
 ```sh
 npm run build
 ```
-![alt text](<Screenshot 2025-09-05 144625.png>)
 
-![alt text](activity-6.png)
+<!-- Make sure your image paths are correct and the images exist in the project root or public folder -->
+
+![Screenshot](./Screenshot%202025-09-05%20144625.png)
+
+![Activity 6](./activity-6.png)

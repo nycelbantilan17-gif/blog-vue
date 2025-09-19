@@ -1,78 +1,75 @@
+<template>
+  <div class="post-card">
+    <div class="header">
+      <small>
+        Written by {{ post.name }} on {{ post.date }}
+      </small>
+      <div class="actions">
+        <button @click="$emit('delete')" class="delete">🗑</button>
+        <button @click="$emit('save')" class="save">
+          {{ post.saved ? '✅' : '🔖' }}
+        </button>
+      </div>
+    </div>
+
+    <h3>{{ post.title }}</h3>
+    <!-- apply class here -->
+    <p class="post-body">{{ post.body }}</p>
+  </div>
+</template>
+
 <script setup>
 defineProps({
-    post: {
-        type: Object,
-        required: true
-    }
+  post: Object
 })
 </script>
 
-<template>
-<div class="post-card">
-  <div class="header">
-    <span>Written by {{ post.name }} on {{ post.date }}</span>
-    <div>
-      <button class="del material-icons">delete</button>
-      <button class="save material-icons">bookmark_border</button>
-    </div>
-  </div>
-  <h1>{{ post.title }}</h1>
-  <p>{{ post.body }}</p>
-</div>
-</template>
-
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .post-card {
-  border: 1px solid #e0e0e0; // Neutral, light gray border
-  border-radius: 1rem;
   background: #fff;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 16px rgba(36, 31, 31, 0.06);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.post-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.post-body {
+  font-size: 1.15rem;
+  color: #444;
+  line-height: 1.7;
+  white-space: pre-line;       
+  word-wrap: break-word;        
+  overflow-wrap: break-word;    
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-
-  span {
-    color: #888;
-    font-size: 0.95rem;
-  }
-
-  button {
-    background: #f5f5f5;
-    border: none;
-    border-radius: 6px;
-    padding: 8px 16px;
-    margin-left: 8px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.2s;
-
-    &.del {
-      color: #d32f2f;
-    }
-    &.save {
-      color: #388e3c;
-    }
-    &:hover {
-      background: #e0e0e0;
-    }
-  }
+  margin-bottom: 0.4rem;
 }
 
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 16px;
-  color: #222;
+.actions {
+  display: flex;
+  gap: 0.3rem;
 }
 
-p {
-  font-size: 1.15rem;
-  color: #444;
-  line-height: 1.7;
+button {
+  background: #f5f5f5;
+  border: none;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background: #e0e0e0;
 }
 </style>

@@ -1,113 +1,150 @@
 <script setup>
-import PostItem from '@/components/PostItem.vue';
-import Wrapper from '@/components/Wrapper.vue';
+import { ref, onMounted } from 'vue'
+import { usePostsStore } from '@/stores/posts'
+import PostItem from '@/components/PostItem.vue'
+import Wrapper from '@/components/Wrapper.vue'
 
-const posts = [
-  {
-    "userId": 1,
-    "id": 1,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "To be or not to be responsible: Choosing to avoid responsibility",
-    "body": "Because there are obligations,\npeople avoid consequences by escaping duties,\nsome blame others instead of doing their part,\nwe all face situations like this, yet someone must still do the work."
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Who is this person?",
-    "body": "In the timeline of life,\nsome follow blindly, others suffer in silence,\nthere are those who fake kindness but only hurt people,\nwhy do some people just cause problems and never offer solutions?"
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Complaints and burdens: Always falling on me",
-    "body": "Even when I'm fair, I'm still blamed,\npeople expect perfection and always want more,\nwhy am I the one accused or pressured?\nI carry hate, work hard, and still it's not enough."
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Why does everything fall on me?",
-    "body": "I’m often forced to accept tasks others reject,\nI try to be responsible, but get blamed when things go wrong,\npeople don’t understand the effort it takes,\nand yet, they expect me to fix everything."
-  },
-  {
-    "userId": 1,
-    "id": 5,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Frustration and anger",
-    "body": "I’m tired of apologizing and doing everything,\nothers take advantage while I stay quiet,\nwhy do I always have to fix their mistakes?\nThe pain and responsibility are too much."
-  },
-  {
-    "userId": 1,
-    "id": 6,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Suffering in silence",
-    "body": "My body is exhausted and my mind tired,\nwe try to stay strong even when hurting inside,\nwe get blamed and misunderstood,\nbut still we carry on with the pain and the work."
-  },
-  {
-    "userId": 1,
-    "id": 7,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Why is it always difficult?",
-    "body": "Life keeps throwing problems our way,\nsome people act like they care, but don’t really help,\nand when trouble comes, they disappear,\nwe’re left to deal with it alone again."
-  },
-  {
-    "userId": 1,
-    "id": 8,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Pain behind the smile",
-    "body": "We try to look strong on the outside,\nbut our hearts are tired from carrying pain,\nevery day we hide what we feel,\nand yet, life keeps challenging us more."
-  },
-  {
-    "userId": 1,
-    "id": 9,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Legal problems, temporary fixes, and frustrations",
-    "body": "People know what’s right, but still ignore it,\nwe're promised change but get the same results,\ntemporary solutions just delay real progress,\nand we suffer the consequences."
-  },
-  {
-    "userId": 1,
-    "id": 10,
-    "name": "Nycel Bantilan",
-    "date": "2025-09-03",
-    "title": "Annoyances and mistakes we endure",
-    "body": "We deal with poor service and wrong decisions,\nwe're forced to stay silent when things go bad,\nwe sit through the errors,\nand no one is held accountable."
-  },
-  {
-    "userId": 2,
-    "id": 11,
-    "name": "Arnil Gerodiaz",
-    "date": "2025-09-03",
-    "title": "Recognizing and praising the good",
-    "body": "Some people still care and do what’s right,\nwe see kindness and honesty in them,\nthey help even when no one’s watching,\nand that gives us hope for the community."
-  },
-  {
-    "userId": 2,
-    "id": 12,
-    "name": "Arnil Gerodiaz",
-    "date": "2025-09-03",
-    "title": "Old problems still not solved",
-    "body": "These issues have been around for a long time,\nand yet, no real solution has been done,\nit’s frustrating when no one listens,\neven when the problems are clear and serious."
-  }
-]
+// ✅ Store
+const postStore = usePostsStore()
+
+// ✅ State
+const showSaved = ref('all')
+
+// ✅ Toggle between all posts and saved posts
+const postFilter = () => {
+  showSaved.value = showSaved.value === 'all' ? 'saved' : 'all'
+}
+
+// ✅ Fetch posts on mount
+onMounted(() => {
+  postStore.getPosts()
+})
+
+// ✅ Methods for delete and save
+const deletePost = (id) => {
+  postStore.deletePost(id)
+}
+
+const savePost = (id) => {
+  postStore.savedPost(id)
+}
 </script>
 
 <template>
-  <main>
-    <div v-for="post in posts" :key="post.id">
+  <div class="header">
+    <div>
+      <h4>{{ showSaved === 'all' ? 'All Posts' : 'Saved Posts' }}</h4>
+      <span v-show="postStore.loading" class="material-icons">cached</span>
+    </div>
+
+    <button @click="postFilter">
+      {{ showSaved === 'all' ? 'Show Saved Posts' : 'Show All Posts' }}
+    </button>
+  </div>
+
+  <!-- ✅ Error Message -->
+  <div v-if="postStore.errorMessage" class="error">
+    ⚠️ {{ postStore.errorMessage }}
+  </div>
+
+  <!-- ✅ All posts -->
+  <div v-if="showSaved === 'all'">
+    <div v-if="postStore.sorted.length === 0">
+      <p>No posts yet. 🚀 Add your first post!</p>
+    </div>
+    <div v-else v-for="post in postStore.sorted" :key="post.id">
       <Wrapper>
-        <PostItem :post="post"/>
+        <PostItem
+          :post="post"
+          @delete="deletePost(post.id)"
+          @save="savePost(post.id)"
+        />
       </Wrapper>
     </div>
-  </main>
+  </div>
+
+  <!-- ✅ Saved posts -->
+  <div v-if="showSaved === 'saved'">
+    <div v-if="postStore.save.length === 0">
+      <p>No saved posts yet.</p>
+    </div>
+    <div v-else v-for="post in postStore.save" :key="post.id">
+      <Wrapper>
+        <PostItem
+          :post="post"
+          @delete="deletePost(post.id)"
+          @save="savePost(post.id)"
+        />
+      </Wrapper>
+    </div>
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 56px;
+  background: #fff;
+  z-index: 10;
+
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    h4 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+    }
+
+    .material-icons {
+      animation: rotate 1.2s linear infinite;
+      font-size: 1.5rem;
+      color: #4f8cff;
+    }
+  }
+
+  button {
+    background: #4f8cff;
+    color: #fff;
+    border: none;
+    border-radius: 1cap;
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #a53fa8;
+    }
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(252, 165, 165, 0.08);
+}
+</style>

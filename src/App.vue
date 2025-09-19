@@ -1,18 +1,21 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { usePostsStore } from '@/stores/posts'
+
+const postStore = usePostsStore()
+postStore.getPosts()
 </script>
 
 <template>
   <header>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/add-post">Add Post</RouterLink>
-      </nav>
+    <nav>
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/add-post">Add Post</RouterLink>
+    </nav>
   </header>
 
   <RouterView />
 </template>
-
 
 <style lang="scss" scoped>
 header {
@@ -37,6 +40,6 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #64b5f6;
+  background-color: #2fbbaf;
 }
 </style>
